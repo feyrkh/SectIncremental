@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://0hhm675x5qem"]
+
+[ext_resource type="Script" path="res://ui/CultivatorsLeftSidebar.gd" id="1_an55t"]
+[ext_resource type="PackedScene" uid="uid://csp4vrxdbrwd7" path="res://ui/CultivatorInfo.tscn" id="2_wtuwe"]
+
+[node name="CultivatorsLeftSidebar" type="PanelContainer"]
+script = ExtResource("1_an55t")
+
+[node name="CultivatorInfo" parent="." instance=ExtResource("2_wtuwe")]
+layout_mode = 2

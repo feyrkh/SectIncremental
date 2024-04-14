@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://csp4vrxdbrwd7"]
+
+[ext_resource type="Script" path="res://ui/CultivatorInfo.gd" id="1_hvpfy"]
+[ext_resource type="PackedScene" uid="uid://dauyt3w1mtg2u" path="res://ui/CultivatorDropdownSelector.tscn" id="2_eaki8"]
+
+[node name="CultivatorInfo" type="VBoxContainer"]
+script = ExtResource("1_hvpfy")
+
+[node name="CultivatorSelect" parent="." instance=ExtResource("2_eaki8")]
+custom_minimum_size = Vector2(0, 0)
+layout_mode = 2
+
+[node name="StatsContainer" type="GridContainer" parent="."]
+layout_mode = 2
+columns = 2

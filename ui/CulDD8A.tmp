@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://0hhm675x5qem"]
+
+[ext_resource type="Script" path="res://ui/CharacterInfo.gd" id="1_2hkw4"]
+[ext_resource type="Script" path="res://ui/CultivatorsLeftSidebar.gd" id="1_an55t"]
+
+[node name="CultivatorsLeftSidebar" type="PanelContainer"]
+script = ExtResource("1_an55t")
+
+[node name="CharacterInfo" type="VBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("1_2hkw4")
+
+[node name="CultivatorSelect" type="OptionButton" parent="CharacterInfo"]
+layout_mode = 2
+
+[node name="CharHp" type="Label" parent="CharacterInfo"]
+layout_mode = 2
+text = "100/100 health
+"
+
+[node name="CharSp" type="Label" parent="CharacterInfo"]
+layout_mode = 2
+text = "100/100 stamina"
+
+[connection signal="item_selected" from="CharacterInfo/CultivatorSelect" to="CharacterInfo" method="_on_cultivator_select_item_selected"]

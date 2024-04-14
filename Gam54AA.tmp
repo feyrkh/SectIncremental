@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbwv5un7057yr"]
+
+[ext_resource type="Script" path="res://ui/Game.gd" id="1_wgv0q"]
+[ext_resource type="Script" path="res://ui/CharacterInfo.gd" id="2_7415o"]
+
+[node name="Game" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wgv0q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CharacterInfo" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+script = ExtResource("2_7415o")
+
+[node name="CharName" type="Label" parent="HBoxContainer/VBoxContainer/PanelContainer/CharacterInfo"]
+layout_mode = 2
+text = "Wandering Cultivator #1"
+
+[node name="CharHp" type="Label" parent="HBoxContainer/VBoxContainer/PanelContainer/CharacterInfo"]
+layout_mode = 2
+text = "100/100 health
+"
+
+[node name="CharSp" type="Label" parent="HBoxContainer/VBoxContainer/PanelContainer/CharacterInfo"]
+layout_mode = 2
+text = "100/100 stamina"
+
+[node name="MainView" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CurActivity" type="PanelContainer" parent="HBoxContainer/MainView"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AllActivities" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="TrainingButton" type="Button" parent="HBoxContainer/AllActivities"]
+layout_mode = 2
+text = "Training
+"

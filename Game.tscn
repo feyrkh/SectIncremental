@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbwv5un7057yr"]
+
+[ext_resource type="Script" path="res://ui/Game.gd" id="1_wgv0q"]
+[ext_resource type="PackedScene" uid="uid://0hhm675x5qem" path="res://ui/CultivatorsLeftSidebar.tscn" id="3_cecqq"]
+[ext_resource type="Script" path="res://sect/CalendarLabel.gd" id="3_y7q75"]
+[ext_resource type="Script" path="res://ui/StorylineUI.gd" id="4_pbfxa"]
+[ext_resource type="Script" path="res://MainView.gd" id="4_ppqcy"]
+[ext_resource type="PackedScene" uid="uid://cbuu4tvkuec7y" path="res://ui/SparMainMenu.tscn" id="6_3vx2b"]
+
+[node name="Game" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wgv0q")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Global" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="StorylineBtn" type="Button" parent="VBoxContainer/Global"]
+layout_mode = 2
+text = "Story"
+
+[node name="CultivatorsBtn" type="Button" parent="VBoxContainer/Global"]
+layout_mode = 2
+text = "Cultivators
+"
+
+[node name="CalendarLabel" type="Label" parent="VBoxContainer/Global"]
+layout_mode = 2
+size_flags_horizontal = 10
+horizontal_alignment = 2
+script = ExtResource("3_y7q75")
+
+[node name="NextDateButton" type="Button" parent="VBoxContainer/Global"]
+layout_mode = 2
+text = "(next day)"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="LeftSidebar" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CultivatorsLeftSidebar" parent="VBoxContainer/HBoxContainer/LeftSidebar" instance=ExtResource("3_cecqq")]
+layout_mode = 2
+
+[node name="MainView" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("4_ppqcy")
+
+[node name="CultivatorMain" type="PanelContainer" parent="VBoxContainer/HBoxContainer/MainView"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="StorylineUI" type="PanelContainer" parent="VBoxContainer/HBoxContainer/MainView"]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_pbfxa")
+
+[node name="SparMain" parent="VBoxContainer/HBoxContainer/MainView" instance=ExtResource("6_3vx2b")]
+layout_mode = 2
+
+[node name="RightSidebar" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="CultivatorsRightSidebar" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightSidebar"]
+layout_mode = 2
+
+[node name="TrainingButton" type="Button" parent="VBoxContainer/HBoxContainer/RightSidebar/CultivatorsRightSidebar"]
+layout_mode = 2
+text = "Training
+"
+
+[node name="SparButton" type="Button" parent="VBoxContainer/HBoxContainer/RightSidebar/CultivatorsRightSidebar"]
+layout_mode = 2
+text = "Spar
+"
+
+[node name="StorylineRightSidebar" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/RightSidebar"]
+visible = false
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/Global/StorylineBtn" to="." method="_on_storyline_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/Global/CultivatorsBtn" to="." method="_on_cultivators_btn_pressed"]
+[connection signal="pressed" from="VBoxContainer/Global/NextDateButton" to="." method="_on_next_date_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/RightSidebar/CultivatorsRightSidebar/SparButton" to="VBoxContainer/HBoxContainer/MainView" method="_on_spar_button_pressed"]
