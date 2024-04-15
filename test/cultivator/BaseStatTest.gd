@@ -15,7 +15,7 @@ func before_test():
 	signaled_old_value = null
 	signaled_new_value = null
 	stat = BaseStat.new(100)
-	stat.effective_value_changed.connect(
+	stat.value_updated.connect(
 		func(old_val, new_val): 
 			signaled_old_value = old_val
 			signaled_new_value = new_val

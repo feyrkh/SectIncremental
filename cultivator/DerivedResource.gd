@@ -23,7 +23,8 @@ var value:float:
 	set(v):
 		var old_val = value
 		value = v
-		value_updated.emit(old_val, value)
+		if old_val != value:
+			value_updated.emit(old_val, value)
 
 var max_value:
 	get:
@@ -94,13 +95,13 @@ func describe() -> String:
 	for k in max_value_settings:
 		stats.append([k, max_value_settings[k]])
 	stats.sort_custom(func(a,b): return a[1] > b[1])
-	stats = stats.map(func(stat): '%s*%d%%' % [stat[0], stat[1]*100])
+	stats = stats.map(func(stat): return '%s*%d%%' % [stat[0], stat[1]*100])
 	retval += ', '.join(stats)
 	retval += ', regen: '
 	stats = []
 	for k in regen_settings:
 		stats.append([k, regen_settings[k]])
 	stats.sort_custom(func(a,b): return a[1] > b[1])
-	stats = stats.map(func(stat): '%s*%.1f%%' % [stat[0], stat[1]*100])
+	stats = stats.map(func(stat): return '%s*%.1f%%' % [stat[0], stat[1]*100])
 	retval += ', '.join(stats)
 	return retval

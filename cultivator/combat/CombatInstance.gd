@@ -8,3 +8,5 @@ class_name CombatInstance
 @export var combatant1_turn:bool = randf() < 0.5
 @export var incoming_attacks:Array[TargetedAttack] = []
 
+func is_cultivator_in_combat(cultivator:Cultivator):
+	return combatant1.is_cultivator_in_party(cultivator) || combatant2.is_cultivator_in_party(cultivator)

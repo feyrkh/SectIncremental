@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 Calendar="*res://util/Calendar.gd"
 Events="*res://util/Events.gd"
 Sect="*res://util/Sect.gd"
+CombatMgr="*res://cultivator/combat/CombatMgr.gd"
+
+[debug]
+
+gdscript/warnings/shadowed_variable=0
 
 [editor_plugins]
 

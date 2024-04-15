@@ -26,3 +26,4 @@ res://ui/Game.gd
 res://ui/CultivatorInfo.gd
 res://ui/CultivatorInfo.tscn
 res://ui/CultivatorsLeftSidebar.gd
+res://cultivator/combat/CombatMgr.gd

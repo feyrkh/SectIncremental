@@ -10,5 +10,4 @@ var date:int = 0:
 
 func next_day():
 	date += 1
-	date_changed.emit()
 	day_passed.emit()

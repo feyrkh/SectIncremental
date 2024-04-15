@@ -41,4 +41,4 @@ func _on_cultivators_btn_pressed() -> void:
 	show_panels("Cultivators")
 
 func _on_next_date_button_pressed() -> void:
-	Calendar.date += 1
+	Calendar.next_day()

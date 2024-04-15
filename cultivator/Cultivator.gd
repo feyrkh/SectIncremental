@@ -1,6 +1,8 @@
 extends Resource
 class_name Cultivator
 
+signal info_changed()
+
 static var next_cultivator_id:int = 1
 
 static var ONE_CONST := BaseStat.new(1)
@@ -39,6 +41,10 @@ var stamina:DerivedResource:
 	get:
 		return derived_resources.get('sp')
 
+var time:DerivedResource:
+	get:
+		return derived_resources.get('time')
+
 static func random_cultivator() -> Cultivator:
 	var new_guy = Cultivator.new()
 	new_guy.char_name = "Wandering Cultivator #" + str(next_cultivator_id)
@@ -48,10 +54,21 @@ static func random_cultivator() -> Cultivator:
 		new_guy.base_stats[stat] = BaseStat.new(randfn(100, 20))
 	for resource in DERIVED_RESOURCES:
 		new_guy.derived_resources[resource] = DerivedResource.new(DERIVED_RESOURCES_DATA[resource][0], DERIVED_RESOURCES_DATA[resource][1], new_guy.base_stats)
+	new_guy._post_construct()
 	return new_guy
 
 func _init():
+	Calendar.day_passed.connect(regen_derived_resources)
 	Calendar.day_passed.connect(tick_long_bonuses)
+
+func _post_construct():
+	for stat_name in base_stats:
+		var stat:BaseStat = base_stats[stat_name]
+		stat.value_updated.connect(func(o,n): info_changed.emit())
+		stat.derived_values_need_update.connect(func(): info_changed.emit())
+	for stat_name in derived_resources:
+		var stat:DerivedResource = derived_resources[stat_name]
+		stat.value_updated.connect(func(o,n): info_changed.emit())
 
 func tick_short_bonuses() -> void:
 	for stat_name in BASE_STATS:
@@ -60,3 +77,7 @@ func tick_short_bonuses() -> void:
 func tick_long_bonuses() -> void:
 	for stat_name in BASE_STATS:
 		base_stats[stat_name].tick_long_bonuses()
+
+func regen_derived_resources() -> void:
+	for stat_name in derived_resources:
+		derived_resources[stat_name].tick_regen()

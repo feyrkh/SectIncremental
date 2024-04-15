@@ -1,7 +1,7 @@
-Label
-OptionButton
 Button
+Label
 VBoxContainer
+OptionButton
 ScrollContainer
 HBoxContainer
 PanelContainer

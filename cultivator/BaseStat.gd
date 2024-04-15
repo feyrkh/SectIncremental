@@ -1,7 +1,7 @@
 extends Resource
 class_name BaseStat
 
-signal effective_value_changed(old_value:float, new_value:float)
+signal value_updated(old_value:float, new_value:float)
 signal derived_values_need_update()
 
 @export var base_value:float = 100:
@@ -38,7 +38,7 @@ var value:
 		if _effective_value == null:
 			update_effective_value()
 			if previous_effective_value != null && abs(previous_effective_value - _effective_value) > 0.01:
-				effective_value_changed.emit(previous_effective_value, _effective_value)
+				value_updated.emit(previous_effective_value, _effective_value)
 		return _effective_value
 var previous_effective_value
 
@@ -71,7 +71,7 @@ static func calculate_effective_value(base_value, permanent_static_bonus, perman
 	return ((v + base_static) * base_pct) * flat_pct + flat_static
 
 func update_effective_value() -> void:
-	value = calculate_effective_value(base_value, permanent_static_bonus, permanent_percent_bonus, short_bonuses, long_bonuses)
+	value = BaseStat.calculate_effective_value(base_value, permanent_static_bonus, permanent_percent_bonus, short_bonuses, long_bonuses)
 
 func add_short_bonus(source:String, bonus:StatBonus):
 	if _effective_value != null:
